@@ -37,20 +37,20 @@ public class Connection {
       resetConnection();
    }
 
-   //The user hangs up the phone.
-   public String hangup() {
-      if (state == RECORDING) {
-         currentMailbox.addMessage(new Message(currentRecording));
-      }
-      return resetConnection();
-   }
-
     // Reset the connection to the initial state and prompt for mailbox number
    private String resetConnection() {
       currentRecording = "";
       accumulatedKeys = "";
       state = CONNECTED;
       return INITIAL_PROMPT;
+   }
+
+   //The user hangs up the phone.
+   public String hangup() {
+      if (state == RECORDING) {
+         currentMailbox.addMessage(new Message(currentRecording));
+      }
+      return resetConnection();
    }
 
     // Respond to the user's pressing a key on the phone touchpad
@@ -114,7 +114,7 @@ public class Connection {
          state = CHANGE_GREETING;
          return "Record your greeting, then press the # key";
       }
-      return "ye";
+      return "";
    }
 
     //Change passcode.
@@ -126,7 +126,7 @@ public class Connection {
          return MAILBOX_MENU_TEXT;
       } else
          accumulatedKeys += key;
-      return "equis";
+      return "";
    }
 
     // Change greeting.
@@ -137,13 +137,13 @@ public class Connection {
          state = MAILBOX_MENU;
          return MAILBOX_MENU_TEXT;
       }
-      return "f";
+      return "";
    }
 
 
     // Record voice.
    public void record(String voice) {
-      if (state == RECORDING || state == CHANGE_GREETING)
+      if (isAbleToRecord())
          currentRecording += voice;
    }
 
@@ -166,6 +166,10 @@ public class Connection {
          state = MAILBOX_MENU;
          return MAILBOX_MENU_TEXT;
       }
-      return "l";
+      return "";
+   }
+
+   public boolean isAbleToRecord() {
+      return state == RECORDING || state == CHANGE_GREETING;
    }
 }
