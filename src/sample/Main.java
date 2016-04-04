@@ -13,14 +13,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        //primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("VoiceMail | Leandro Guardia");
 
-        Scene myScene  = new Scene (root, 330, 500);
+        Scene myScene  = new Scene (root);
         primaryStage.setScene(myScene);
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

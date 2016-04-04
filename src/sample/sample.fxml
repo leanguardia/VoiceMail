@@ -1,87 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.*?>
-<GridPane alignment="center" hgap="10" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="246.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+
+<GridPane alignment="center" hgap="10" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="364.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="361.0" minHeight="262.0" prefHeight="354.0" />
-      <RowConstraints maxHeight="447.0" minHeight="160.0" prefHeight="161.0" />
+      <RowConstraints maxHeight="377.0" minHeight="262.0" prefHeight="377.0" />
+      <RowConstraints maxHeight="447.0" minHeight="138.0" prefHeight="138.0" />
    </rowConstraints>
    <children>
-      <Pane prefHeight="311.0" prefWidth="246.0">
+      <Pane prefHeight="374.0" prefWidth="364.0">
          <children>
-            <Button layoutX="46.0" layoutY="133.0" mnemonicParsing="false" text="1">
+            <Button fx:id="one" layoutX="107.0" layoutY="156.0" mnemonicParsing="false" onAction="#dial" text="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="99.0" layoutY="133.0" mnemonicParsing="false" text="2">
+            <Button fx:id="two" layoutX="160.0" layoutY="156.0" mnemonicParsing="false" onAction="#dial" text="2">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="46.0" layoutY="187.0" mnemonicParsing="false" text="4">
+            <Button fx:id="four" layoutX="107.0" layoutY="210.0" mnemonicParsing="false" onAction="#dial" text="4">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="152.0" layoutY="133.0" mnemonicParsing="false" text="3">
+            <Button fx:id="three" layoutX="213.0" layoutY="156.0" mnemonicParsing="false" onAction="#dial" text="3">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="99.0" layoutY="187.0" mnemonicParsing="false" text="5">
+            <Button fx:id="five" layoutX="160.0" layoutY="210.0" mnemonicParsing="false" onAction="#dial" text="5">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="46.0" layoutY="241.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="43.0" text="7">
+            <Button fx:id="seven" layoutX="107.0" layoutY="264.0" mnemonicParsing="false" onAction="#dial" prefHeight="23.0" prefWidth="43.0" text="7">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="152.0" layoutY="187.0" mnemonicParsing="false" text="6">
+            <Button fx:id="six" layoutX="213.0" layoutY="210.0" mnemonicParsing="false" onAction="#dial" text="6">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="99.0" layoutY="241.0" mnemonicParsing="false" text="8">
+            <Button fx:id="eight" layoutX="160.0" layoutY="264.0" mnemonicParsing="false" onAction="#dial" text="8">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="152.0" layoutY="241.0" mnemonicParsing="false" text="9">
+            <Button fx:id="nine" layoutX="213.0" layoutY="264.0" mnemonicParsing="false" onAction="#dial" text="9">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="46.0" layoutY="295.0" mnemonicParsing="false" text="*">
+            <Button fx:id="asterisk" layoutX="107.0" layoutY="318.0" mnemonicParsing="false" text="*">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="99.0" layoutY="295.0" mnemonicParsing="false" text="0">
+            <Button fx:id="zero" layoutX="160.0" layoutY="318.0" mnemonicParsing="false" onAction="#dial" text="0">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="152.0" layoutY="295.0" mnemonicParsing="false" text="#">
+            <Button fx:id="hash" layoutX="213.0" layoutY="318.0" mnemonicParsing="false" onAction="#dial" text="#">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#a3c8eb" height="78.0" layoutX="14.0" layoutY="30.0" stroke="#aeaeae" strokeType="INSIDE" width="219.0" />
+            <Rectangle fill="#a3c8eb" height="125.0" layoutX="14.0" layoutY="12.0" stroke="#aeaeae" strokeType="INSIDE" width="337.0" />
+            <Label fx:id="display" alignment="TOP_LEFT" layoutX="18.0" layoutY="12.0" prefHeight="125.0" prefWidth="328.0" text="Enter mailbox number followed by #" wrapText="true" />
          </children>
       </Pane>
-      <Pane maxWidth="-Infinity" prefHeight="171.0" prefWidth="246.0" GridPane.rowIndex="1">
+      <Pane maxWidth="-Infinity" prefHeight="161.0" prefWidth="370.0" GridPane.rowIndex="1">
          <children>
-            <TextArea layoutX="14.0" layoutY="14.0" prefHeight="84.0" prefWidth="219.0" />
-            <Button layoutX="93.0" layoutY="111.0" mnemonicParsing="false" text="Submit" />
+            <TextArea layoutX="42.0" layoutY="14.0" prefHeight="73.0" prefWidth="281.0" />
+            <Button layoutX="151.0" layoutY="98.0" mnemonicParsing="false" text="Submit" />
          </children>
       </Pane>
    </children>
