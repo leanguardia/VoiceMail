@@ -1,5 +1,4 @@
 package code;
-
 /**
    A message left by the caller.
 */
