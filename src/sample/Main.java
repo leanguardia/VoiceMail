@@ -1,5 +1,9 @@
 package sample;
 
+import code.Connection;
+import code.MailSystem;
+import code.Observer;
+import code.Console;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +20,15 @@ public class Main extends Application {
         Scene myScene  = new Scene (root);
         primaryStage.setScene(myScene);
         primaryStage.show();
+    }
+
+    @Override
+    public void init(){
+        System.out.print("Bienvenido al programa :P\n");
+        MailSystem mailSystem = new MailSystem(10);
+        Connection connection = new Connection(mailSystem);
+        Observer console = new Console(connection);
+        connection.addObserver(console);
     }
 
     public static void main(String[] args) {

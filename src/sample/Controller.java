@@ -3,18 +3,16 @@ package sample;
 import java.util.Scanner;
 import code.Connection;
 import code.MailSystem;
-import code.Telephone;
+import code.Observer;
+import code.Console;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
-public class Controller {
-    private MailSystem mailSystem;
-    private Telephone phone;
+public class Controller implements Observer{
     private Connection connection;
-    private String out;
 
     @FXML private Label display;
     @FXML private TextArea textArea;
@@ -33,10 +31,8 @@ public class Controller {
     @FXML private Button hangup;
     @FXML private Button recordBtn;
 
-    public Controller(){
-        mailSystem = new MailSystem(10);
-        phone = new Telephone(new Scanner(System.in));
-        connection = new Connection(mailSystem,phone);
+    public Controller(Connection c){
+        connection = c;
     }
 
     public void run(ActionEvent event)
@@ -46,20 +42,22 @@ public class Controller {
             connection.hangup();
          else if (input.length() == 1
             && "1234567890#".indexOf(input) >= 0){
-             phone.speak(input);
              connection.dial(input);
          }
          else{
              recordedText = textArea.getText();
-             phone.speak(recordedText);
              connection.record(recordedText);
              textArea.clear();
          }
-       display.setText(connection.getCurrentMessage());
    }
 
     private String getInput(String s) {
         return s.split("'")[1];
+    }
+
+    @Override
+    public void update() {
+
     }
 }
 
