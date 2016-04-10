@@ -1,7 +1,5 @@
 package code;
 
-import javafx.scene.control.Label;
-
 /**
    Connects a phone to the mail system. The purpose of this
    class is to keep track of the state of a connection, since
