@@ -17,75 +17,75 @@
    <children>
       <Pane prefHeight="374.0" prefWidth="364.0">
          <children>
-            <Button fx:id="one" layoutX="72.0" layoutY="156.0" mnemonicParsing="false" onAction="#run" text="1">
+            <Button fx:id="one" layoutX="72.0" layoutY="156.0" mnemonicParsing="false" onAction="#runEvent" text="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="two" layoutX="125.0" layoutY="156.0" mnemonicParsing="false" onAction="#run" text="2">
+            <Button fx:id="two" layoutX="125.0" layoutY="156.0" mnemonicParsing="false" onAction="#runEvent" text="2">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="four" layoutX="72.0" layoutY="210.0" mnemonicParsing="false" onAction="#run" text="4">
+            <Button fx:id="four" layoutX="72.0" layoutY="210.0" mnemonicParsing="false" onAction="#runEvent" text="4">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="three" layoutX="178.0" layoutY="156.0" mnemonicParsing="false" onAction="#run" text="3">
+            <Button fx:id="three" layoutX="178.0" layoutY="156.0" mnemonicParsing="false" onAction="#runEvent" text="3">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="five" layoutX="125.0" layoutY="210.0" mnemonicParsing="false" onAction="#run" text="5">
+            <Button fx:id="five" layoutX="125.0" layoutY="210.0" mnemonicParsing="false" onAction="#runEvent" text="5">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="seven" layoutX="72.0" layoutY="264.0" mnemonicParsing="false" onAction="#run" prefHeight="23.0" prefWidth="43.0" text="7">
+            <Button fx:id="seven" layoutX="72.0" layoutY="264.0" mnemonicParsing="false" onAction="#runEvent" prefHeight="23.0" prefWidth="43.0" text="7">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="six" layoutX="178.0" layoutY="210.0" mnemonicParsing="false" onAction="#run" text="6">
+            <Button fx:id="six" layoutX="178.0" layoutY="210.0" mnemonicParsing="false" onAction="#runEvent" text="6">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="eight" layoutX="125.0" layoutY="264.0" mnemonicParsing="false" onAction="#run" text="8">
+            <Button fx:id="eight" layoutX="125.0" layoutY="264.0" mnemonicParsing="false" onAction="#runEvent" text="8">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="nine" layoutX="178.0" layoutY="264.0" mnemonicParsing="false" onAction="#run" text="9">
+            <Button fx:id="nine" layoutX="178.0" layoutY="264.0" mnemonicParsing="false" onAction="#runEvent" text="9">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="asterisk" layoutX="72.0" layoutY="318.0" mnemonicParsing="false" text="*">
+            <Button fx:id="asterisk" layoutX="72.0" layoutY="318.0" mnemonicParsing="false" onAction="#runEvent" text="*">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="zero" layoutX="125.0" layoutY="318.0" mnemonicParsing="false" onAction="#run" text="0">
+            <Button fx:id="zero" layoutX="125.0" layoutY="318.0" mnemonicParsing="false" onAction="#runEvent" text="0">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="hash" layoutX="178.0" layoutY="318.0" mnemonicParsing="false" onAction="#run" text="#">
+            <Button fx:id="hash" layoutX="178.0" layoutY="318.0" mnemonicParsing="false" onAction="#runEvent" text="#">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
             <Rectangle fill="#a3c8eb" height="125.0" layoutX="14.0" layoutY="12.0" stroke="#aeaeae" strokeType="INSIDE" width="337.0" />
             <Label fx:id="display" alignment="TOP_LEFT" layoutX="18.0" layoutY="12.0" prefHeight="125.0" prefWidth="328.0" text="Enter mailbox number followed by #" wrapText="true" />
-            <Button fx:id="hangup" layoutX="261.0" layoutY="290.0" mnemonicParsing="false" onAction="#run" prefHeight="73.0" prefWidth="69.0" text="Hangup" />
+            <Button fx:id="hangup" layoutX="261.0" layoutY="290.0" mnemonicParsing="false" onAction="#runEvent" prefHeight="73.0" prefWidth="69.0" text="Hangup" />
          </children>
       </Pane>
       <Pane maxWidth="-Infinity" prefHeight="161.0" prefWidth="370.0" GridPane.rowIndex="1">
          <children>
             <TextArea fx:id="textArea" layoutX="42.0" layoutY="14.0" prefHeight="73.0" prefWidth="281.0" />
-            <Button fx:id="recordBtn" layoutX="151.0" layoutY="97.0" mnemonicParsing="false" onAction="#run" text="Record" />
+            <Button fx:id="recordBtn" layoutX="151.0" layoutY="97.0" mnemonicParsing="false" onAction="#runEvent" text="Record" />
          </children>
       </Pane>
    </children>

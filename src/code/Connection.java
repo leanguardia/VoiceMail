@@ -7,13 +7,12 @@ import java.util.ArrayList;
    class is to keep track of the state of a connection, since
    the phone itself is just a source of individual key presses.
 */
-public class Connection implements Subject{
+public class Connection{
    private MailSystem system;
    private Mailbox currentMailbox;
    private String currentRecording;
    private String accumulatedKeys;
-   private String displayText;
-   ArrayList<Observer> observers;
+   ArrayList<UserInterface> observers;
 
    private int state;
 
@@ -39,6 +38,7 @@ public class Connection implements Subject{
    // Construct a Connection object.
    public Connection(MailSystem s) {
       system = s;
+      observers = new ArrayList<UserInterface>();
       resetConnection();
    }
 
@@ -58,15 +58,6 @@ public class Connection implements Subject{
          messageMenu(key);
    }
 
-   public void run(String input) {
-      if (input.equalsIgnoreCase("H"))
-         hangup();
-      else if (input.length() == 1 && "1234567890#".indexOf(input) >= 0)
-         dial(input);
-      else
-         record(input);
-   }
-
    //The user hangs up the phone.
    public void hangup() {
       if (state == RECORDING) {
@@ -81,20 +72,18 @@ public class Connection implements Subject{
          currentRecording += voice;
    }
 
-   @Override
-   public void addObserver(Observer o) {
+   public void addObserver(UserInterface o) {
       observers.add(o);
+      resetConnection();
    }
 
-   @Override
-   public void removeObserver(Observer o) {
+   public void removeObserver(UserInterface o) {
       observers.remove(o);
    }
 
-   @Override
-   public void updateObservers() {
-      for (Observer observer : observers)
-         observer.update();
+   public void speakToAll(String s) {
+      for (UserInterface observer : observers)
+         observer.speak(s);
    }
 
     // Reset the connection to the initial state and prompt for mailbox number
@@ -102,7 +91,7 @@ public class Connection implements Subject{
       currentRecording = "";
       accumulatedKeys = "";
       state = CONNECTED;
-      displayText = INITIAL_PROMPT;
+      speakToAll(INITIAL_PROMPT);;
    }
 
    public boolean isConnected() {
@@ -129,19 +118,15 @@ public class Connection implements Subject{
       return state == CHANGE_GREETING;
    }
 
-   public String getDisplayText(){
-      return displayText;
-   }
-
     // Try to connect the user with the specified mailbox.
    private void connect(String key) {
       if (key.equals("#")) {
          currentMailbox = system.findMailbox(accumulatedKeys);
          if (currentMailbox != null) {
             state = RECORDING;
-            displayText = currentMailbox.getGreeting();
+            speakToAll(currentMailbox.getGreeting());
          } else{
-            displayText = "Incorrect mailbox number. Try again!";
+            speakToAll("Incorrect mailbox number. Try again!");
          }
          accumulatedKeys = "";
       } else
@@ -153,9 +138,9 @@ public class Connection implements Subject{
       if (key.equals("#")) {
          if (currentMailbox.checkPasscode(accumulatedKeys)) {
             state = MAILBOX_MENU;
-            displayText = MAILBOX_MENU_TEXT;
+            speakToAll(MAILBOX_MENU_TEXT);
          } else{
-            displayText = "Incorrect passcode. Try again!";
+            speakToAll("Incorrect passcode. Try again!");
          }
          accumulatedKeys = "";
       } else
@@ -167,13 +152,13 @@ public class Connection implements Subject{
    private void mailboxMenu(String key) {
       if (key.equals("1")) {
          state = MESSAGE_MENU;
-         displayText = MESSAGE_MENU_TEXT;
+         speakToAll(MESSAGE_MENU_TEXT);;
       } else if (key.equals("2")) {
          state = CHANGE_PASSCODE;
-         displayText = "Enter new passcode followed by the # key";
+         speakToAll("Enter new passcode followed by the # key");
       } else if (key.equals("3")) {
          state = CHANGE_GREETING;
-         displayText = "Record your greeting, then press the # key";
+         speakToAll("Record your greeting, then press the # key");
       }
    }
 
@@ -182,7 +167,7 @@ public class Connection implements Subject{
       if (key.equals("#")) {
          currentMailbox.setPasscode(accumulatedKeys);
          state = MAILBOX_MENU;
-         displayText = MAILBOX_MENU_TEXT;
+         speakToAll(MAILBOX_MENU_TEXT);
          accumulatedKeys = "";
       } else
          accumulatedKeys += key;
@@ -194,7 +179,7 @@ public class Connection implements Subject{
          currentMailbox.setGreeting(currentRecording);
          currentRecording = "";
          state = MAILBOX_MENU;
-         displayText = MAILBOX_MENU_TEXT;
+         speakToAll(MAILBOX_MENU_TEXT);
       }
    }
 
@@ -206,16 +191,16 @@ public class Connection implements Subject{
          if (m == null) output += "No messages." + "\n";
          else output += m.getText() + "\n";
          output += MESSAGE_MENU_TEXT;
-         displayText = output;
+         speakToAll(output);
       } else if (key.equals("2")) {
          currentMailbox.saveCurrentMessage();
-         displayText = MESSAGE_MENU_TEXT;
+         speakToAll(MESSAGE_MENU_TEXT);
       } else if (key.equals("3")) {
          currentMailbox.removeCurrentMessage();
-         displayText = MESSAGE_MENU_TEXT;
+         speakToAll(MESSAGE_MENU_TEXT);
       } else if (key.equals("4")) {
          state = MAILBOX_MENU;
-         displayText = MAILBOX_MENU_TEXT;
+         speakToAll(MAILBOX_MENU_TEXT);
       }
    }
 }
