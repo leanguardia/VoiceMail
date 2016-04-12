@@ -1,10 +1,8 @@
 package code;
+import sample.GUIController;
+
 import java.util.Scanner;
 
-/**
-   This program tests the mail system. A single phone
-   communicates with the program through System.in/System.out.
-*/
 public class MailSystemTester
 {
    private static final int MAILBOX_COUNT = 20;
@@ -13,9 +11,19 @@ public class MailSystemTester
    {
       MailSystem system = new MailSystem(MAILBOX_COUNT);
       Scanner scanner = new Scanner(System.in);
-      UserInterface console = new Console(scanner);
+
       Connection connection = new Connection(system);
+
+      UserInterface console = new Console(scanner);
+      UserInterface window = new GUIController();
+
       connection.addObserver(console);
-      console.run(connection);
+      connection.addObserver(window);
+
+      console.setConnection(connection);
+      window.setConnection(connection);
+
+      console.run();
+      window.run();
    }
 }

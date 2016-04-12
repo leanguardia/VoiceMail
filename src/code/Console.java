@@ -21,15 +21,27 @@ public class Console implements UserInterface {
    }
 
    @Override
-   public void run(Connection c) {
-      String input = scanner.nextLine();
-      if (input == null) return;
-      if (input.equalsIgnoreCase("H"))
-         c.hangup();
-      else if (input.length() == 1
-              && "1234567890#".indexOf(input) >= 0)
-         c.dial(input);
-      else
-         c.record(input);
+   public void setConnection(Connection c) {
+      connection = c;
+   }
+
+   @Override
+   public void run()
+   {
+      boolean more = true;
+      while (more)
+      {
+         String input = scanner.nextLine();
+         if (input == null) return;
+         if (input.equalsIgnoreCase("H"))
+            connection.hangup();
+         else if (input.equalsIgnoreCase("Q"))
+            more = false;
+         else if (input.length() == 1
+                 && "1234567890#".indexOf(input) >= 0)
+            connection.dial(input);
+         else
+            connection.record(input);
+      }
    }
 }

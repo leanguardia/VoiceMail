@@ -4,42 +4,47 @@ import code.Connection;
 import code.UserInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
-public class Controller implements UserInterface {
-    Connection connection;
-    private String input;
-    private String recordedText;
+public class GUIController implements UserInterface{
+        private Connection connection;
+        private String input;
+        private String recordedText;
 
-    @FXML private Label display;
-    @FXML private TextArea textArea;
-    @FXML private Button one;
-    @FXML private Button two;
-    @FXML private Button three;
-    @FXML private Button four;
-    @FXML private Button five;
-    @FXML private Button six;
-    @FXML private Button seven;
-    @FXML private Button eight;
-    @FXML private Button nine;
-    @FXML private Button zero;
-    @FXML private Button asterisk;
-    @FXML private Button hash;
-    @FXML private Button hangup;
-    @FXML private Button recordBtn;
+        @FXML private Label display;
+        @FXML private TextArea textArea;
+        @FXML private Button one;
+        @FXML private Button two;
+        @FXML private Button three;
+        @FXML private Button four;
+        @FXML private Button five;
+        @FXML private Button six;
+        @FXML private Button seven;
+        @FXML private Button eight;
+        @FXML private Button nine;
+        @FXML private Button zero;
+        @FXML private Button asterisk;
+        @FXML private Button hash;
+        @FXML private Button hangup;
+        @FXML private Button recordBtn;
 
-    public Controller(Connection c){
+    public GUIController(){
         input = "";
-        connection = c;
     }
 
     public void runEvent(ActionEvent event)
-   {
+    {
         input = getInput(event.getSource().toString());
-        run(connection);
-   }
+        run();
+    }
+
+    @Override
+    public void setConnection(Connection c){
+        connection = c;
+    }
 
     @Override
     public void speak(String s) {
@@ -47,7 +52,7 @@ public class Controller implements UserInterface {
     }
 
     @Override
-    public void run(Connection c){
+    public void run(){
         if(!input.equals("")){
             if (input.equalsIgnoreCase("hangup"))
                 connection.hangup();
@@ -61,7 +66,6 @@ public class Controller implements UserInterface {
                 textArea.clear();
             }
         }
-
     }
 
     private String getInput(String s) {
