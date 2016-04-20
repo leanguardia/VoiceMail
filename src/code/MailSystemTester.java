@@ -9,21 +9,25 @@ public class MailSystemTester
 
    public static void main(String[] args)
    {
-      MailSystem system = new MailSystem(MAILBOX_COUNT);
+      MailSystem ms = new MailSystem(MAILBOX_COUNT);
       Scanner scanner = new Scanner(System.in);
 
-      Connection connection = new Connection(system);
+      ContactSystem cs = new ContactSystem();
+      cs.addContact("Leandro","Guardia","70728566");
+      cs.addContact("Juan Carlos","Paniagua","6554433");
+
+      Connection connection = new Connection(ms,cs);
 
       UserInterface console = new Console(scanner);
-      UserInterface window = new GUIController();
+//      UserInterface window = new GUIController();
 
       connection.addObserver(console);
-      connection.addObserver(window);
+//      connection.addObserver(window);
 
       console.setConnection(connection);
-      window.setConnection(connection);
+//      window.setConnection(connection);
 
       console.run();
-      window.run();
+//      window.run();
    }
 }

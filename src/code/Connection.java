@@ -12,6 +12,7 @@ public class Connection{
    private Mailbox currentMailbox;
    private String currentRecording;
    private String accumulatedKeys;
+   private ContactSystem contactSystem;
    ArrayList<UserInterface> observers;
 
    private int state;
@@ -22,22 +23,31 @@ public class Connection{
    private static final int MESSAGE_MENU = 4;
    private static final int CHANGE_PASSCODE = 5;
    private static final int CHANGE_GREETING = 6;
+   private static final int CONTACT_MENU = 7;
+   private static final int ADD_CONTACT = 8;
 
    private static final String INITIAL_PROMPT =
            "Enter mailbox number followed by #";
    private static final String MAILBOX_MENU_TEXT =
            "Enter 1 to listen to your messages\n"
                    + "Enter 2 to change your passcode\n"
-                   + "Enter 3 to change your greeting";
+                   + "Enter 3 to change your greeting\n"
+                   + "Enter 4 to watch your contacts";
    private static final String MESSAGE_MENU_TEXT =
            "Enter 1 to listen to the current message\n"
                    + "Enter 2 to save the current message\n"
                    + "Enter 3 to delete the current message\n"
                    + "Enter 4 to return to the main menu";
+   private static final String CONTACT_MENU_TEXT =
+           "Enter 1 to watch your contacts\n"
+                   + "Enter 2 to add a contact\n"
+                   + "Enter 3 to delete a contact\n"
+                   + "Enter 4 to return to main menu";
 
    // Construct a Connection object.
-   public Connection(MailSystem s) {
+   public Connection(MailSystem s,ContactSystem c) {
       system = s;
+      contactSystem = c;
       observers = new ArrayList<UserInterface>();
       resetConnection();
    }
@@ -56,6 +66,30 @@ public class Connection{
          mailboxMenu(key);
       else if (state == MESSAGE_MENU)
          messageMenu(key);
+      else if (state == CONTACT_MENU)
+         contactMenu(key);
+      else if (state == ADD_CONTACT)
+         addContact(key);
+   }
+
+   private void addContact(String key) {
+      if (key.equals("#")) {
+         System.out.println("ENTROO!");
+         if (isValidContact(currentRecording)) {
+            String[] array = currentRecording.split(" ");
+            contactSystem.addContact(array[0],array[1],array[2]);
+            state = CONTACT_MENU;
+            speakToAll(CONTACT_MENU_TEXT);
+         } else{
+            speakToAll("Invalid Input, try again!");
+         }
+         accumulatedKeys = "";
+      } else
+         accumulatedKeys += key;
+   }
+
+   private boolean isValidContact(String currentRecording) {
+      return currentRecording.split(" ").length >= 3;
    }
 
    //The user hangs up the phone.
@@ -68,7 +102,7 @@ public class Connection{
 
    // Record voice.
    public void record(String voice) {
-      if (state == RECORDING || state == CHANGE_GREETING)
+      if (state == RECORDING || state == CHANGE_GREETING || state == ADD_CONTACT)
          currentRecording += voice;
    }
 
@@ -159,6 +193,9 @@ public class Connection{
       } else if (key.equals("3")) {
          state = CHANGE_GREETING;
          speakToAll("Record your greeting, then press the # key");
+      } else if (key.equals("4")) {
+         state = CONTACT_MENU;
+         speakToAll(CONTACT_MENU_TEXT);
       }
    }
 
@@ -197,6 +234,23 @@ public class Connection{
          speakToAll(MESSAGE_MENU_TEXT);
       } else if (key.equals("3")) {
          currentMailbox.removeCurrentMessage();
+         speakToAll(MESSAGE_MENU_TEXT);
+      } else if (key.equals("4")) {
+         state = MAILBOX_MENU;
+         speakToAll(MAILBOX_MENU_TEXT);
+      }
+   }
+
+   private void contactMenu(String key) {
+      if(key.equals("1")){
+         speakToAll(contactSystem.getAllContacts());
+         speakToAll(CONTACT_MENU_TEXT);
+      } else if (key.equals("2")) {
+         state = ADD_CONTACT;
+         speakToAll("Format: <first name> <last name> <phone number>, then '#'.");
+      } else if (key.equals("3")) {
+         speakToAll("Not Implemented");
+         state = MAILBOX_MENU;
          speakToAll(MESSAGE_MENU_TEXT);
       } else if (key.equals("4")) {
          state = MAILBOX_MENU;

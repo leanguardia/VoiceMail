@@ -1,9 +1,6 @@
 package sample;
 
-import code.Connection;
-import code.MailSystem;
-import code.UserInterface;
-import code.Console;
+import code.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,7 +20,7 @@ public class Main extends Application {
 
     public void init(){
         system  = new MailSystem(10);
-        connection  = new Connection(system);
+        connection  = new Connection(system,new ContactSystem());
         console = new Console(new Scanner(System.in));
     }
 
@@ -43,7 +40,7 @@ public class Main extends Application {
         Scene myScene  = new Scene (root);
         primaryStage.setScene(myScene);
         primaryStage.show();
-        //console.run();
+        console.run();
     }
 
     public static void main(String[] args) {
