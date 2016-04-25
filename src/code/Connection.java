@@ -49,7 +49,9 @@ public class Connection{
       system = s;
       contactSystem = c;
       observers = new ArrayList<UserInterface>();
-      resetConnection();
+      currentRecording = "";
+      accumulatedKeys = "";
+      state = CONNECTED;
    }
 
    // Respond to the user's pressing a key on the phone touchpad
@@ -105,7 +107,7 @@ public class Connection{
       currentRecording = "";
       accumulatedKeys = "";
       state = CONNECTED;
-      speakToAll(INITIAL_PROMPT);;
+      speakToAll(INITIAL_PROMPT);
    }
 
    public boolean isConnected() {
