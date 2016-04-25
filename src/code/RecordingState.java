@@ -3,13 +3,13 @@ package code;
 /**
  * Created by Deleguard on 4/25/16.
  */
-public class LoginState {
+public class RecordingState implements ConnectionState {
 
     // Try to log in the user.
-    public void login(String key, Connection connection) {
+    public void handle(String key, Connection connection) {
        if (key.equals("#")) {
           if (connection.currentMailbox.checkPasscode(connection.accumulatedKeys)) {
-             connection.state = Connection.MAILBOX_MENU;
+             connection.state = new MailboxMenuState();
              connection.speakToAll(connection.MAILBOX_MENU_TEXT);
           } else{
              connection.speakToAll("Incorrect passcode. Try again!");
@@ -17,5 +17,15 @@ public class LoginState {
           connection.accumulatedKeys = "";
        } else
           connection.accumulatedKeys += key;
+    }
+
+    @Override
+    public void record(String voice, Connection connection) {
+        connection.currentRecording += voice;
+    }
+
+    @Override
+    public void hangup(Connection c) {
+        c.currentMailbox.addMessage(new Message(c.currentRecording));
     }
 }

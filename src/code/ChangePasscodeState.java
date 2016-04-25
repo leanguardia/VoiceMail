@@ -3,16 +3,26 @@ package code;
 /**
  * Created by Deleguard on 4/25/16.
  */
-public class ChangePasscodeState {
+public class ChangePasscodeState implements ConnectionState {
 
     //Change passcode.
-    public void changePasscode(String key, Connection connection) {
+    public void handle(String key, Connection connection) {
       if (key.equals("#")) {
          connection.currentMailbox.setPasscode(connection.accumulatedKeys);
-         connection.state = Connection.MAILBOX_MENU;
+         connection.state = new MailboxMenuState();
          connection.speakToAll(connection.MAILBOX_MENU_TEXT);
          connection.accumulatedKeys = "";
       } else
          connection.accumulatedKeys += key;
    }
+
+    @Override
+    public void record(String voice, Connection connection) {
+        connection.currentRecording += voice;
+    }
+
+    @Override
+    public void hangup(Connection connection) {
+
+    }
 }

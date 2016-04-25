@@ -3,10 +3,10 @@ package code;
 /**
  * Created by Deleguard on 4/25/16.
  */
-public class MessageMenuState {
+public class MessageMenuState implements ConnectionState {
 
     //Respond to the user's selection from message menu.
-    public void messageMenu(String key, Connection connection) {
+    public void handle(String key, Connection connection) {
        if (key.equals("1")) {
           String output = "";
           Message m = connection.currentMailbox.getCurrentMessage();
@@ -21,8 +21,18 @@ public class MessageMenuState {
           connection.currentMailbox.removeCurrentMessage();
           connection.speakToAll(connection.MESSAGE_MENU_TEXT);
        } else if (key.equals("4")) {
-          connection.state = Connection.MAILBOX_MENU;
+          connection.state = new MailboxMenuState();
           connection.speakToAll(connection.MAILBOX_MENU_TEXT);
        }
     }
+
+   @Override
+   public void record(String voice, Connection connection) {
+
+   }
+
+   @Override
+   public void hangup(Connection connection) {
+
+   }
 }
