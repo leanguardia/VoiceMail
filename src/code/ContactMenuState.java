@@ -17,7 +17,6 @@ public class ContactMenuState implements ConnectionState {
           connection.state = new MailboxMenuState();
           connection.speakToAll(connection.MAILBOX_MENU_TEXT);
        } else if (key.equals("4")) {
-          connection.speakToAll("Not Implemented");
           connection.state = new MailboxMenuState();
           connection.speakToAll(connection.MAILBOX_MENU_TEXT);
        }
