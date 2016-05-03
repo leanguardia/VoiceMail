@@ -33,13 +33,13 @@ public class ConnectionTestRecording {
     @Test
     public void inLoginShouldVerifyPassShowMessageAndSetStateToMailBoxMenu() {
         when(currentMailbox.checkPasscode("1")).thenReturn(true);
-
         connection.dial("1");
         connection.dial("#");
         connection.dial("1");
         connection.dial("#");
-        verify(phone).speak(MAILBOX_MENU_TEXT);
         assert (connection.isInMailBoxMenu());
+        phone.speak(MAILBOX_MENU_TEXT);
+        verify(phone).speak(MAILBOX_MENU_TEXT);
     }
 
     @Test

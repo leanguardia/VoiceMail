@@ -46,14 +46,12 @@ public class Connection{
 
    //The user hangs up the phone.
    public void hangup() {
-      //if (state == RECORDING) currentMailbox.addMessage(new Message(currentRecording));
       state.hangup(this);
       resetConnection();
    }
 
    // Record voice.
    public void record(String voice) {
-      //if (state == RECORDING||state == CHANGE_GREETING||state == ADD_CONTACT) currentRecording += voice;
       state.record(voice, this);
    }
 

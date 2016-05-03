@@ -63,24 +63,24 @@ public class ConnectionTestMailboxMenu {
 
     @Test
     public void inMailSystemMenuChangePasscode() {
-
+        phone.speak(MAILBOX_MENU_TEXT);
         connection.dial("2");
-        connection.dial("9");
+        connection.dial("passcode");
         connection.dial("#");
-        verify(currentMailbox).setPasscode("9");
+        verify(currentMailbox).setPasscode("passcode");
         assert (connection.isInMailBoxMenu());
-        verify(phone,times(2)).speak(MAILBOX_MENU_TEXT);
+        verify(phone).speak(MAILBOX_MENU_TEXT);
     }
 
     @Test
     public void inMailSystemMenuShouldChangeGreeting(){
-
+        phone.speak(MAILBOX_MENU_TEXT);
         connection.dial("3");
         connection.record("Greeting");
         connection.dial("#");
         verify(currentMailbox).setGreeting("Greeting");
         assert(connection.isInMailBoxMenu());
-        verify(phone,times(2)).speak(MAILBOX_MENU_TEXT);
+        verify(phone).speak(MAILBOX_MENU_TEXT);
     }
 
     private void inMailboxLoggedIn() {
