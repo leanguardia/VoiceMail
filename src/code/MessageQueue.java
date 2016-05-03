@@ -8,9 +8,7 @@ import java.util.ArrayList;
 */
 public class MessageQueue
 {
-   /**
-      Constructs an empty message queue.
-   */
+
    public MessageQueue()
    {
       queue = new ArrayList<Message>();

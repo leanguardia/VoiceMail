@@ -12,17 +12,17 @@ public class MessageMenuState implements ConnectionState {
           Message m = connection.currentMailbox.getCurrentMessage();
           if (m == null) output += "No messages." + "\n";
           else output += m.getText() + "\n";
-          output += connection.MESSAGE_MENU_TEXT;
+          output += new Text().MESSAGE_MENU_TEXT;
           connection.speakToAll(output);
        } else if (key.equals("2")) {
           connection.currentMailbox.saveCurrentMessage();
-          connection.speakToAll(connection.MESSAGE_MENU_TEXT);
+          connection.speakToAll(new Text().MESSAGE_MENU_TEXT);
        } else if (key.equals("3")) {
           connection.currentMailbox.removeCurrentMessage();
-          connection.speakToAll(connection.MESSAGE_MENU_TEXT);
+          connection.speakToAll(new Text().MESSAGE_MENU_TEXT);
        } else if (key.equals("4")) {
           connection.state = new MailboxMenuState();
-          connection.speakToAll(connection.MAILBOX_MENU_TEXT);
+          connection.speakToAll(new Text().MAILBOX_MENU_TEXT);
        }
     }
 

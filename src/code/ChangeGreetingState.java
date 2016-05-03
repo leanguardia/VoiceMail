@@ -10,7 +10,7 @@ public class ChangeGreetingState implements ConnectionState{
           connection.currentMailbox.setGreeting(connection.currentRecording);
           connection.currentRecording = "";
           connection.state = new MailboxMenuState();
-          connection.speakToAll(connection.MAILBOX_MENU_TEXT);
+          connection.speakToAll(new Text().MAILBOX_MENU_TEXT);
        }
     }
 
