@@ -9,7 +9,7 @@ public class MailboxMenuState implements ConnectionState {
     public void handle(String key, Connection connection) {
        if (key.equals("1")) {
           connection.state = new MessageMenuState();
-          connection.speakToAll(new Text().MESSAGE_MENU_TEXT);;
+          connection.speakToAll(Texts.MESSAGE_MENU_TEXT);;
        } else if (key.equals("2")) {
           connection.state = new ChangePasscodeState();
           connection.speakToAll("Enter new passcode followed by the # key");
@@ -18,7 +18,7 @@ public class MailboxMenuState implements ConnectionState {
           connection.speakToAll("Record your greeting, then press the # key");
        } else if (key.equals("4")) {
           connection.state = new ContactMenuState();
-          connection.speakToAll(new Text().CONTACT_MENU_TEXT);
+          connection.speakToAll(Texts.CONTACT_MENU_TEXT);
        }
     }
 

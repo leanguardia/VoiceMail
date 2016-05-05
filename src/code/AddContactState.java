@@ -15,7 +15,7 @@ public class AddContactState implements ConnectionState{
              String[] array = connection.currentRecording.split(" ");
              connection.contactSystem.addContact(array[0],array[1],array[2]);
              connection.state = new ContactMenuState();
-             connection.speakToAll(new Text().CONTACT_MENU_TEXT);
+             connection.speakToAll(Texts.CONTACT_MENU_TEXT);
           } else{
              connection.speakToAll("Invalid Input, try again!");
           }
