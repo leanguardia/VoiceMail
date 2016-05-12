@@ -1,5 +1,7 @@
 package code;
 
+import javafx.application.Platform;
+
 import java.util.ArrayList;
 
 public class Connection{
@@ -45,8 +47,14 @@ public class Connection{
    }
 
    public void speakToAll(String s) {
-      for (UserInterface observer : observers)
-         observer.speak(s);
+      Platform.runLater(new Runnable() {  // Needed to update
+         @Override                        // the GUI from a different
+         public void run() {              // thread
+            for (UserInterface observer : observers)
+               observer.speak(s);
+         }
+      });
+
    }
 
     // Reset the connection to the initial state and prompt for mailbox number

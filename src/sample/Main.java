@@ -2,6 +2,7 @@ package sample;
 
 import code.*;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,7 +15,7 @@ public class Main extends Application {
     private MailSystem system;
     private Connection connection;
     private UserInterface gui;
-    private UserInterface console;
+    private Console console;
 
     private FXMLLoader loader;
 
@@ -36,14 +37,25 @@ public class Main extends Application {
         console.setConnection(connection);
         gui.setConnection(connection);
 
+        Thread th = new Thread(consoleThread);
+        th.setDaemon(true);
+        th.start();
+
         primaryStage.setTitle("VoiceMail | Leandro Guardia");
         Scene myScene  = new Scene (root);
         primaryStage.setScene(myScene);
         primaryStage.show();
-        console.run();
     }
 
     public static void main(String[] args) {
         launch(args);
     }
+
+    Task<Void> consoleThread = new Task<Void>() {
+        @Override protected Void call() throws Exception {
+            console.run();
+            System.out.printf("Console Thread is dead");
+            return null;
+        }
+    };
 }

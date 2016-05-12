@@ -2,9 +2,6 @@ package code;
 
 import java.util.ArrayList;
 
-/**
- * Created by Deleguard on 4/19/16.
- */
 public class ContactSystem {
     private ArrayList<Contact> contacts;
 
@@ -18,6 +15,8 @@ public class ContactSystem {
 
     public String getAllContacts() {
         String allContacts="";
+        if (contacts.isEmpty())
+            return "No Contacts\n";
         for(Contact c: contacts){
             allContacts += c.getString() + "\n";
         }
@@ -28,9 +27,5 @@ public class ContactSystem {
         Contact c = new Contact(fn,ls);
         c.addNumber(num);
         contacts.add(c);
-    }
-
-    public void readContact() {
-        System.out.printf("Read the Contact");
     }
 }
