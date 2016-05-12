@@ -6,7 +6,6 @@ import org.junit.Before;
 
 import static org.mockito.Mockito.*;
 
-
 public class ConnectionTestMessageMenu {
     Mailbox currentMailbox;
     MailSystem mailSystem;

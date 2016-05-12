@@ -1,5 +1,8 @@
+import static org.junit.Assert.*;
+
 import code.*;
-import org.junit.*;
+import org.junit.Test;
+import org.junit.Before;
 
 import static org.mockito.Mockito.*;
 
