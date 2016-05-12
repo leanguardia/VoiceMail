@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 
 import code.Message;
+
 import org.junit.Test;
 
 public class MessageTest{

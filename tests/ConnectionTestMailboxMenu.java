@@ -1,3 +1,4 @@
+
 import code.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -63,6 +64,7 @@ public class ConnectionTestMailboxMenu {
 
     @Test
     public void inMailSystemMenuChangePasscode() {
+
         phone.speak(MAILBOX_MENU_TEXT);
         connection.dial("2");
         connection.dial("passcode");
