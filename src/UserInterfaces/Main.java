@@ -1,6 +1,6 @@
-package sample;
+package UserInterfaces;
 
-import code.*;
+import BusinessLogic.*;
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +28,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource("sample.fxml").openStream());
+        Parent root = loader.load(getClass().getResource("UI.fxml").openStream());
         gui = loader.getController();
 
         connection.addObserver(console);

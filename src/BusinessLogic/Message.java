@@ -1,4 +1,4 @@
-package code;
+package BusinessLogic;
 /**
    A message left by the caller.
 */

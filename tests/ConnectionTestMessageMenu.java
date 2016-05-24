@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 
-import code.*;
+import BusinessLogic.*;
+import UserInterfaces.Console;
 import org.junit.Test;
 import org.junit.Before;
 

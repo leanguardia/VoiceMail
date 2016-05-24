@@ -1,5 +1,6 @@
 
-import code.*;
+import BusinessLogic.*;
+import UserInterfaces.Console;
 import org.junit.Before;
 import org.junit.Test;
 

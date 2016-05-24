@@ -1,4 +1,4 @@
-package code;
+package BusinessLogic;
 /**
    A mailbox contains messages that can be listed, kept or discarded.
 */

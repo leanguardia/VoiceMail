@@ -1,4 +1,6 @@
-package code;
+package BusinessLogic.ConnectionStates;
+
+import BusinessLogic.Connection;
 
 /**
  * Created by Deleguard on 4/25/16.

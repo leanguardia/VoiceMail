@@ -1,9 +1,12 @@
-package code;
+package BusinessLogic.ConnectionStates;
+
+import BusinessLogic.Connection;
+import BusinessLogic.Texts;
 
 /**
  * Created by Deleguard on 4/25/16.
  */
-public class AddContactState implements ConnectionState{
+public class AddContactState implements ConnectionState {
 
     private boolean isValidContact(String currentRecording) {
         return currentRecording.split(" ").length >= 3;

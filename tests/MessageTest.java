@@ -1,6 +1,6 @@
 import static org.junit.Assert.*;
 
-import code.Message;
+import BusinessLogic.Message;
 
 import org.junit.Test;
 

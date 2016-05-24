@@ -1,5 +1,7 @@
-package code;
+package BusinessLogic;
 
+import BusinessLogic.ConnectionStates.*;
+import UserInterfaces.UserInterface;
 import javafx.application.Platform;
 
 import java.util.ArrayList;

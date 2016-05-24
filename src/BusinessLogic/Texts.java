@@ -1,8 +1,5 @@
-package code;
+package BusinessLogic;
 
-/**
- * Created by Deleguard on 5/3/16.
- */
 public class Texts {
     public static final String MESSAGE_MENU_TEXT =
             "Enter 1 to listen to the current message\n"

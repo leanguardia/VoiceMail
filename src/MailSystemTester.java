@@ -1,5 +1,6 @@
-package code;
-import sample.GUIController;
+import BusinessLogic.*;
+import UserInterfaces.Console;
+import UserInterfaces.UserInterface;
 
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public class MailSystemTester
       Connection connection = new Connection(ms,cs);
 
       UserInterface console = new Console(scanner);
-//      UserInterface window = new GUIController();
+//      UserInterfaces window = new GUIController();
 
       connection.addObserver(console);
 //      connection.addObserver(window);

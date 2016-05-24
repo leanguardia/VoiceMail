@@ -1,8 +1,8 @@
 import static org.junit.Assert.*;
 
 
-import code.Message;
-import code.MessageQueue;
+import BusinessLogic.Message;
+import BusinessLogic.MessageQueue;
 import org.junit.Test;
 
 /**

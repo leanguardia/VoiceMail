@@ -1,9 +1,11 @@
-package code;
+package BusinessLogic.ConnectionStates;
+
+import BusinessLogic.Connection;
 
 /**
  * Created by Deleguard on 4/22/16.
  */
-public class ConnectedState implements ConnectionState{
+public class ConnectedState implements ConnectionState {
 
     // Try to handle the user with the specified mailbox.
     @Override

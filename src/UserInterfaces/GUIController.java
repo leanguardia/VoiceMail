@@ -1,7 +1,6 @@
-package sample;
+package UserInterfaces;
 
-import code.Connection;
-import code.UserInterface;
+import BusinessLogic.Connection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

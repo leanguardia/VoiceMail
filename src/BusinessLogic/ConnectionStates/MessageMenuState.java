@@ -1,4 +1,10 @@
-package code;
+package BusinessLogic.ConnectionStates;
+
+import BusinessLogic.Connection;
+import BusinessLogic.ConnectionStates.ConnectionState;
+import BusinessLogic.ConnectionStates.MailboxMenuState;
+import BusinessLogic.Message;
+import BusinessLogic.Texts;
 
 /**
  * Created by Deleguard on 4/25/16.

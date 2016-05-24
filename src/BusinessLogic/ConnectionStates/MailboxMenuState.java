@@ -1,8 +1,8 @@
-package code;
+package BusinessLogic.ConnectionStates;
 
-/**
- * Created by Deleguard on 4/25/16.
- */
+import BusinessLogic.Connection;
+import BusinessLogic.Texts;
+
 public class MailboxMenuState implements ConnectionState {
 
     // Respond to the user's selection from mailbox menu.

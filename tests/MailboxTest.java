@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 
-import code.Mailbox;
-import code.Message;
+import BusinessLogic.Mailbox;
+import BusinessLogic.Message;
 import org.junit.Test;
 
 

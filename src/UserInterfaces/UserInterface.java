@@ -1,8 +1,7 @@
-package code;
+package UserInterfaces;
 
-/**
- * Created by Deleguard on 4/10/16.
- */
+import BusinessLogic.Connection;
+
 public interface UserInterface {
     public void run();
     public void speak(String s);

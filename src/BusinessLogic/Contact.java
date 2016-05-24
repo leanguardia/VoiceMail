@@ -1,4 +1,4 @@
-package code;
+package BusinessLogic;
 
 import java.util.ArrayList;
 

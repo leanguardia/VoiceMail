@@ -1,4 +1,7 @@
-package code;
+package UserInterfaces;
+import BusinessLogic.Connection;
+import UserInterfaces.UserInterface;
+
 import java.util.Scanner;
 
 /**
