@@ -1,5 +1,6 @@
 package Databases;
 import BusinessLogic.Contact;
+import BusinessLogic.Mailbox;
 import BusinessLogic.Message;
 
 import java.sql.*;
@@ -16,8 +17,8 @@ public class MySQLConnection {
 
     private Connection conn = null;
 
-    private ArrayList<Message> messages = new ArrayList<Message>();
     private ArrayList<Contact> contacts = new ArrayList<Contact>();
+    private ArrayList<Mailbox> mailboxes = new ArrayList<Mailbox>();
 
     public MySQLConnection() throws SQLException, ClassNotFoundException {
         connectWithDB();
@@ -28,8 +29,10 @@ public class MySQLConnection {
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
 
+            retrieveMailboxes();
             retrieveMessages();
             retrieveContacts();
+
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,20 +41,36 @@ public class MySQLConnection {
         }
     }
 
+    private void retrieveMailboxes() throws SQLException {
+        Statement stmt;
+        stmt = conn.createStatement();
+        String sql = "SELECT greeting, password FROM Mailboxes";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        while(rs.next()){
+            String g = rs.getString("greeting");
+            String p = rs.getString("password");
+            mailboxes.add(new Mailbox(p,g));
+        }
+        rs.close();
+        stmt.close();
+    }
+
     private void retrieveMessages() throws SQLException {
         Statement stmt;
         stmt = conn.createStatement();
-        String sql = "SELECT text FROM Messages";
+        String sql = "SELECT text, mailbox_id FROM Messages";
         ResultSet rs = stmt.executeQuery(sql);
 
         while(rs.next()){
             String text = rs.getString("text");
-            messages.add(new Message(text));
+            int mailbox_id = rs.getInt("mailbox_id");
+            mailboxes.get(mailbox_id-1).addMessage(new Message(text));
         }
         rs.close();
         stmt.close();
-
     }
+
     private void retrieveContacts() throws SQLException {
         Statement stmt;
         stmt = conn.createStatement();
@@ -70,12 +89,12 @@ public class MySQLConnection {
         stmt.close();
     }
 
-    public ArrayList<Message> getMessages() {
-        return messages;
-    }
-
     public ArrayList<Contact> getContacts() {
         return contacts;
+    }
+
+    public ArrayList<Mailbox> getMailboxes() {
+        return mailboxes;
     }
 }
 

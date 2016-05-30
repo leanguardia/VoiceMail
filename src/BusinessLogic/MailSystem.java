@@ -40,7 +40,7 @@ public class MailSystem
       else return null;
    }
 
-   public void setMessages(ArrayList<Message> messages) {
-      mailboxes.get(0).setMessages(messages);
+   public void setMailboxes(ArrayList<Mailbox> mailboxes) {
+      this.mailboxes = mailboxes;
    }
 }

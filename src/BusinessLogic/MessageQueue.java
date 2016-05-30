@@ -52,8 +52,4 @@ public class MessageQueue
       if (queue.size() == 0) return null;
       else return queue.get(0);
    }
-
-   public void setMessages(ArrayList<Message> messages) {
-      queue = messages;
-   }
 }

@@ -22,10 +22,11 @@ public class Main extends Application {
     private FXMLLoader loader;
 
     public void init() throws SQLException, ClassNotFoundException {
-        system  = new MailSystem(10);
-        connection  = new Connection(system,new ContactSystem());
         MySQLConnection mySQL = new MySQLConnection();
-        connection.setMessages(mySQL.getMessages());
+
+        system  = new MailSystem(0);
+        system.setMailboxes(mySQL.getMailboxes());
+        connection  = new Connection(system,new ContactSystem());
         connection.setContacts(mySQL.getContacts());
         console = new Console(new Scanner(System.in));
     }

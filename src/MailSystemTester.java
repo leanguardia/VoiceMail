@@ -36,9 +36,9 @@ public class MailSystemTester
 
    public static void main(String[] args) throws SQLException, ClassNotFoundException {
       MySQLConnection mysql = new MySQLConnection();
-      ArrayList<Message> messages = mysql.getMessages();
-      for(Message m: messages){
-         System.out.println(m.getText());
+      ArrayList<Mailbox> mailboxes = mysql.getMailboxes();
+      for(Mailbox m: mailboxes){
+         System.out.println(m.toString());
       }
       ArrayList<Contact> contacts = mysql.getContacts();
       for(Contact c: contacts){

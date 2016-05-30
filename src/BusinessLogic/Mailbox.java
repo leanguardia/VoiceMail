@@ -108,7 +108,4 @@ public class Mailbox
       return greeting;
    }
 
-   public void setMessages(ArrayList<Message> messages) {
-      keptMessages.setMessages(messages);
-   }
 }
