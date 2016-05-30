@@ -39,4 +39,8 @@ public class MailSystem
          return  mailboxes.get(i - 1);
       else return null;
    }
+
+   public void setMessages(ArrayList<Message> messages) {
+      mailboxes.get(0).setMessages(messages);
+   }
 }

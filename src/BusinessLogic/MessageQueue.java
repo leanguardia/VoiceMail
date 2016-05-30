@@ -8,6 +8,7 @@ import java.util.ArrayList;
 */
 public class MessageQueue
 {
+   private ArrayList<Message> queue;
 
    public MessageQueue()
    {
@@ -52,5 +53,7 @@ public class MessageQueue
       else return queue.get(0);
    }
 
-   private ArrayList<Message> queue;
+   public void setMessages(ArrayList<Message> messages) {
+      queue = messages;
+   }
 }

@@ -1,6 +1,7 @@
 package UserInterfaces;
 
 import BusinessLogic.*;
+import Databases.MySQLConnection;
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main extends Application {
@@ -19,9 +21,12 @@ public class Main extends Application {
 
     private FXMLLoader loader;
 
-    public void init(){
+    public void init() throws SQLException, ClassNotFoundException {
         system  = new MailSystem(10);
         connection  = new Connection(system,new ContactSystem());
+        MySQLConnection mySQL = new MySQLConnection();
+        connection.setMessages(mySQL.getMessages());
+//        connection.setContacts(mySQL.getContacts());
         console = new Console(new Scanner(System.in));
     }
 

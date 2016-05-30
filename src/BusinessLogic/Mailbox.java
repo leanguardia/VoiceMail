@@ -1,4 +1,7 @@
 package BusinessLogic;
+
+import java.util.ArrayList;
+
 /**
    A mailbox contains messages that can be listed, kept or discarded.
 */
@@ -105,4 +108,7 @@ public class Mailbox
       return greeting;
    }
 
+   public void setMessages(ArrayList<Message> messages) {
+      keptMessages.setMessages(messages);
+   }
 }

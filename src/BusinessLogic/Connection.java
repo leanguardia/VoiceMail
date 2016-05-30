@@ -91,4 +91,7 @@ public class Connection{
       return state instanceof ChangeGreetingState;
    }
 
+   public void setMessages(ArrayList<Message> messages) {
+      system.setMessages(messages);
+   }
 }
