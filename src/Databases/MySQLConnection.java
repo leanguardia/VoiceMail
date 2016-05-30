@@ -59,15 +59,22 @@ public class MySQLConnection implements DBConnection {
     }
 
     @Override
-    public void saveMessage(String text, int mailbox_id) {
-        System.out.println("Shoul SAVE MESSAAGEE");
+    public void saveNewMessage(String text, int mailbox_id) {
+        saveMessage(text,mailbox_id,true);
+    }
+
+    @Override
+    public void saveKeptMessage(String text, int mailbox_id) {
+        saveMessage(text,mailbox_id,false);
+    }
+
+
+    public void saveMessage(String text, int mailbox_id, boolean isNewMessage) {
         try{
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
-
             Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO Messages (text, mailbox_id) VALUES (\""
-                    + text + "\"," + mailbox_id + ")";
+            String sql = getSQLstatement(text, mailbox_id, isNewMessage);
             stmt.executeUpdate(sql);
             stmt.close();
             conn.close();
@@ -84,6 +91,7 @@ public class MySQLConnection implements DBConnection {
             }
         }
     }
+
     @Override
     public void saveContact(String fn, String ln, String number) {
         try{
@@ -168,5 +176,13 @@ public class MySQLConnection implements DBConnection {
         stmt.close();
     }
 
+    private String getSQLstatement(String text, int mailbox_id, boolean isNewMessage) {
+        String tableTarget = "Messages";
+        if (isNewMessage) {
+            tableTarget = "NewMessages";
+        }
+        return "INSERT INTO " + tableTarget + " (text, mailbox_id) VALUES (\""
+                + text + "\"," + mailbox_id + ")";
+    }
 }
 

@@ -30,6 +30,8 @@ public class MailSystemTester
 
    public static void main(String[] args) {
       DBConnection mysql = new MySQLConnection();
-      mysql.saveContact("Que","Raro","3");
+//      mysql.saveContact("Que","Raro","3");
+        mysql.saveNewMessage("New1",3);
    }
+
 }

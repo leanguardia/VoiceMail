@@ -46,6 +46,8 @@ public class Mailbox
    public void addMessage(Message aMessage)
    {
       newMessages.add(aMessage);
+      DBConnection mysql = new MySQLConnection();
+      mysql.saveNewMessage(aMessage.getText(),mailboxID);
    }
 
    /**
@@ -84,9 +86,8 @@ public class Mailbox
       if (m != null){
          keptMessages.add(m);
          DBConnection mysql = new MySQLConnection();
-         mysql.saveMessage(m.getText(),mailboxID);
+         mysql.saveKeptMessage(m.getText(),mailboxID);
       }
-
    }
 
    /**
