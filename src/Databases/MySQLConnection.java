@@ -6,7 +6,7 @@ import BusinessLogic.Message;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class MySQLConnection {
+public class MySQLConnection implements DBConnection {
     // JDBC driver name and database URL
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost/VOICEMAIL";
@@ -21,10 +21,10 @@ public class MySQLConnection {
     private ArrayList<Mailbox> mailboxes = new ArrayList<Mailbox>();
 
     public MySQLConnection(){
-        connectWithDB();
     }
 
-    private void connectWithDB() {
+    @Override
+    public void getDataFromDB() {
         try {
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
@@ -48,16 +48,88 @@ public class MySQLConnection {
         }
     }
 
+    @Override
+    public ArrayList<Contact> getContacts() {
+        return contacts;
+    }
+
+    @Override
+    public ArrayList<Mailbox> getMailboxes() {
+        return mailboxes;
+    }
+
+    @Override
+    public void saveMessage(String text, int mailbox_id) {
+        System.out.println("Shoul SAVE MESSAAGEE");
+        try{
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO Messages (text, mailbox_id) VALUES (\""
+                    + text + "\"," + mailbox_id + ")";
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+    }
+    @Override
+    public void saveContact(String fn, String ln, String number) {
+        try{
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO Contacts (first_name, last_name, number) VALUES (\""
+                    + fn + "\",\"" + ln + "\",\"" + number.toString() + "\")";
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void updateMailboxGreeting(int mailbox_id, String greeting) {
+
+    }
+
+    @Override
+    public void updateMailboxPassword(int mailbox_id, String password) {
+
+    }
+
     private void retrieveMailboxes() throws SQLException {
-        Statement stmt;
-        stmt = conn.createStatement();
-        String sql = "SELECT greeting, password FROM Mailboxes";
+        Statement stmt = conn.createStatement();
+        String sql = "SELECT id, greeting, password FROM Mailboxes";
         ResultSet rs = stmt.executeQuery(sql);
 
         while(rs.next()){
+            int id = rs.getInt("id");
             String g = rs.getString("greeting");
             String p = rs.getString("password");
-            mailboxes.add(new Mailbox(p,g));
+            mailboxes.add(new Mailbox(p,g,id));
         }
         rs.close();
         stmt.close();
@@ -96,12 +168,5 @@ public class MySQLConnection {
         stmt.close();
     }
 
-    public ArrayList<Contact> getContacts() {
-        return contacts;
-    }
-
-    public ArrayList<Mailbox> getMailboxes() {
-        return mailboxes;
-    }
 }
 

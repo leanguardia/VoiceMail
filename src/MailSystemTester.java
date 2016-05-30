@@ -1,11 +1,5 @@
-import BusinessLogic.*;
+import Databases.DBConnection;
 import Databases.MySQLConnection;
-import UserInterfaces.Console;
-import UserInterfaces.UserInterface;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MailSystemTester
 {
@@ -35,15 +29,7 @@ public class MailSystemTester
 //   }
 
    public static void main(String[] args) {
-      MySQLConnection mysql = new MySQLConnection();
-      ArrayList<Mailbox> mailboxes = mysql.getMailboxes();
-      for(Mailbox m: mailboxes){
-         System.out.println(m.toString());
-      }
-      ArrayList<Contact> contacts = mysql.getContacts();
-      for(Contact c: contacts){
-         System.out.println(c.getString());
-      }
+      DBConnection mysql = new MySQLConnection();
+      mysql.saveContact("Que","Raro","3");
    }
-
 }

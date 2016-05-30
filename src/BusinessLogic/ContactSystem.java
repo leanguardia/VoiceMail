@@ -1,5 +1,8 @@
 package BusinessLogic;
 
+import Databases.DBConnection;
+import Databases.MySQLConnection;
+
 import java.util.ArrayList;
 
 public class ContactSystem {
@@ -30,6 +33,8 @@ public class ContactSystem {
         Contact c = new Contact(fn,ls);
         c.addNumber(num);
         contacts.add(c);
+        DBConnection mysql = new MySQLConnection();
+        mysql.saveContact(fn,ls,num);
     }
 
     public void removeContact(int contactNumber){

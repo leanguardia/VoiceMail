@@ -23,7 +23,7 @@ public class Main extends Application {
 
     public void init(){
         MySQLConnection mySQL = new MySQLConnection();
-
+        mySQL.getDataFromDB();
         system  = new MailSystem(0);
         system.setMailboxes(mySQL.getMailboxes());
         connection  = new Connection(system,new ContactSystem());

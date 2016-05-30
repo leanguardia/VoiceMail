@@ -1,6 +1,7 @@
 package BusinessLogic;
 
-import java.util.ArrayList;
+import Databases.DBConnection;
+import Databases.MySQLConnection;
 
 /**
    A mailbox contains messages that can be listed, kept or discarded.
@@ -11,18 +12,21 @@ public class Mailbox
    private MessageQueue keptMessages;
    private String greeting;
    private String passcode;
+   private int mailboxID;
 
    /**
       Creates Mailbox object.
-      @param aPasscode passcode number
-      @param aGreeting greeting string
-   */
-   public Mailbox(String aPasscode, String aGreeting)
+    * @param aPasscode passcode number
+    * @param aGreeting greeting string
+    * @param id
+    */
+   public Mailbox(String aPasscode, String aGreeting, int id)
    {
       passcode = aPasscode;
       greeting = aGreeting;
       newMessages = new MessageQueue();
       keptMessages = new MessageQueue();
+      mailboxID = id;
    }
 
    /**
@@ -77,8 +81,12 @@ public class Mailbox
    */
    public void saveCurrentMessage() {
       Message m = removeCurrentMessage();
-      if (m != null)
+      if (m != null){
          keptMessages.add(m);
+         DBConnection mysql = new MySQLConnection();
+         mysql.saveMessage(m.getText(),mailboxID);
+      }
+
    }
 
    /**

@@ -1,4 +1,6 @@
 package BusinessLogic;
+import Databases.MySQLConnection;
+
 import java.util.ArrayList;
 
 /**
