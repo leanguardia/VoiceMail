@@ -102,7 +102,7 @@ public class Mailbox
       if (m != null){
          keptMessages.add(m);
          DBConnection mysql = new MySQLConnection();
-//         mysql.deleteNewMessage(m.getText(),mailboxID);
+         mysql.deleteNewMessage(m.getText(),mailboxID);
          mysql.saveKeptMessage(m.getText(),mailboxID);
       }
    }
