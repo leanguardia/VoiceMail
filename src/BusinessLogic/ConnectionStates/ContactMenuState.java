@@ -16,9 +16,8 @@ public class ContactMenuState implements ConnectionState {
           connection.state = new AddContactState();
           connection.speakToAll("Format: <first name> <last name> <phone number>, then '#'.");
        } else if (key.equals("3")) {
-          connection.speakToAll("Not Implemented");
-          connection.state = new MailboxMenuState();
-          connection.speakToAll(Texts.MAILBOX_MENU_TEXT);
+          connection.state = new RemoveContactState();
+          connection.speakToAll("Insert number of the contact to delete, then #.");
        } else if (key.equals("4")) {
           connection.state = new MailboxMenuState();
           connection.speakToAll(Texts.MAILBOX_MENU_TEXT);

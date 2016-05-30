@@ -94,4 +94,8 @@ public class Connection{
    public void setContacts(ArrayList<Contact> contacts) {
       contactSystem.setContacts(contacts);
    }
+
+   public int getContactsCount() {
+      return contactSystem.getContactsCount();
+   }
 }

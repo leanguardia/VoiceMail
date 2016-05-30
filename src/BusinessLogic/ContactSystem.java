@@ -15,10 +15,13 @@ public class ContactSystem {
 
     public String getAllContacts() {
         String allContacts="";
+        int cont = 1;
         if (contacts.isEmpty())
             return "No Contacts\n";
         for(Contact c: contacts){
+            allContacts += cont + ". ";
             allContacts += c.getString() + "\n";
+            cont += 1;
         }
         return allContacts;
     }
@@ -29,7 +32,14 @@ public class ContactSystem {
         contacts.add(c);
     }
 
+    public void removeContact(int contactNumber){
+        contacts.remove(contacts.get(contactNumber - 1));
+    }
     public void setContacts(ArrayList<Contact> contacts) {
         this.contacts = contacts;
+    }
+
+    public int getContactsCount(){
+        return contacts.size();
     }
 }
