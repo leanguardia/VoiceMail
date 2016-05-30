@@ -26,7 +26,7 @@ public class Main extends Application {
         connection  = new Connection(system,new ContactSystem());
         MySQLConnection mySQL = new MySQLConnection();
         connection.setMessages(mySQL.getMessages());
-//        connection.setContacts(mySQL.getContacts());
+        connection.setContacts(mySQL.getContacts());
         console = new Console(new Scanner(System.in));
     }
 

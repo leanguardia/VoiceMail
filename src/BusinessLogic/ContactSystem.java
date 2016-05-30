@@ -28,4 +28,8 @@ public class ContactSystem {
         c.addNumber(num);
         contacts.add(c);
     }
+
+    public void setContacts(ArrayList<Contact> contacts) {
+        this.contacts = contacts;
+    }
 }

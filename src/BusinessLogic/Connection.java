@@ -94,4 +94,8 @@ public class Connection{
    public void setMessages(ArrayList<Message> messages) {
       system.setMessages(messages);
    }
+
+   public void setContacts(ArrayList<Contact> contacts) {
+      contactSystem.setContacts(contacts);
+   }
 }
