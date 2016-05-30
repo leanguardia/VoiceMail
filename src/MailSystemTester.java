@@ -1,5 +1,8 @@
+import BusinessLogic.Mailbox;
 import Databases.DBConnection;
 import Databases.MySQLConnection;
+
+import java.util.ArrayList;
 
 public class MailSystemTester
 {
@@ -30,8 +33,8 @@ public class MailSystemTester
 
    public static void main(String[] args) {
       DBConnection mysql = new MySQLConnection();
-//      mysql.saveContact("Que","Raro","3");
-        mysql.saveNewMessage("New1",3);
+      mysql.getDataFromDB();
+      mysql.deleteNewMessage("New3",1);
    }
 
 }

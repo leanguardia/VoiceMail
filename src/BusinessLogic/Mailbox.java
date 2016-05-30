@@ -43,11 +43,18 @@ public class Mailbox
       Add a message to the mailbox.
       @param aMessage the message to be added
    */
-   public void addMessage(Message aMessage)
-   {
+   public void addMessage(Message aMessage) {
       newMessages.add(aMessage);
       DBConnection mysql = new MySQLConnection();
       mysql.saveNewMessage(aMessage.getText(),mailboxID);
+   }
+
+   public void justAddNewMessage(Message aMessage) {
+      newMessages.add(aMessage);
+   }
+
+   public void justAddKeptMessage(Message aMessage) {
+      keptMessages.add(aMessage);
    }
 
    /**
@@ -70,12 +77,21 @@ public class Mailbox
    */
    public Message removeCurrentMessage()
    {
-      if (newMessages.size() > 0)
-         return newMessages.remove();
-      else if (keptMessages.size() > 0)
-         return keptMessages.remove();
+      if (newMessages.size() > 0){
+         return deleteCurrentMessage(newMessages.remove(),true);
+      }
+      else if (keptMessages.size() > 0){
+         return deleteCurrentMessage(keptMessages.remove(), false);
+      }
       else
          return null;
+   }
+
+   private Message deleteCurrentMessage(Message m, boolean isNewMessage) {
+      DBConnection mysql = new MySQLConnection();
+      if (isNewMessage) mysql.deleteNewMessage(m.getText(),mailboxID);
+      else mysql.deleteKeptMessage(m.getText(),mailboxID);
+      return m;
    }
 
    /**
@@ -86,6 +102,7 @@ public class Mailbox
       if (m != null){
          keptMessages.add(m);
          DBConnection mysql = new MySQLConnection();
+//         mysql.deleteNewMessage(m.getText(),mailboxID);
          mysql.saveKeptMessage(m.getText(),mailboxID);
       }
    }
@@ -115,6 +132,13 @@ public class Mailbox
    public String getGreeting()
    {
       return greeting;
+   }
+
+   public void setNewMessages(MessageQueue newMessages) {
+      this.newMessages = newMessages;
+   }
+   public void setKeptMessages(MessageQueue keptMessages) {
+      this.keptMessages = keptMessages;
    }
 
 }

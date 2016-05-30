@@ -13,6 +13,9 @@ public interface DBConnection {
     ArrayList<Contact> getContacts();
     void saveNewMessage(String txt, int mailbox_id);
     void saveKeptMessage(String txt, int mailbox_id);
+    void deleteNewMessage(String txt, int mailbox_id);
+    void deleteKeptMessage(String txt, int mailbox_id);
+
     void saveContact(String fn,String ln,String number);
 
     void updateMailboxGreeting(int mailbox_id, String greeting);
