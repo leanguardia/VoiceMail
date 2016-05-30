@@ -20,11 +20,11 @@ public class MySQLConnection {
     private ArrayList<Contact> contacts = new ArrayList<Contact>();
     private ArrayList<Mailbox> mailboxes = new ArrayList<Mailbox>();
 
-    public MySQLConnection() throws SQLException, ClassNotFoundException {
+    public MySQLConnection(){
         connectWithDB();
     }
 
-    private void connectWithDB() throws SQLException, ClassNotFoundException {
+    private void connectWithDB() {
         try {
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
@@ -38,6 +38,13 @@ public class MySQLConnection {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }finally{
+            try{
+                if(conn!=null)
+                    conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
         }
     }
 

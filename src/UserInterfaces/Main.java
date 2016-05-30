@@ -21,7 +21,7 @@ public class Main extends Application {
 
     private FXMLLoader loader;
 
-    public void init() throws SQLException, ClassNotFoundException {
+    public void init(){
         MySQLConnection mySQL = new MySQLConnection();
 
         system  = new MailSystem(0);

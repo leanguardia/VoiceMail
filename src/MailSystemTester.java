@@ -34,7 +34,7 @@ public class MailSystemTester
 ////      window.run();
 //   }
 
-   public static void main(String[] args) throws SQLException, ClassNotFoundException {
+   public static void main(String[] args) {
       MySQLConnection mysql = new MySQLConnection();
       ArrayList<Mailbox> mailboxes = mysql.getMailboxes();
       for(Mailbox m: mailboxes){
