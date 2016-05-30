@@ -130,12 +130,52 @@ public class MySQLConnection implements DBConnection {
 
     @Override
     public void updateMailboxGreeting(int mailbox_id, String greeting) {
+        try{
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
 
+            Statement stmt = conn.createStatement();
+            String sql = "UPDATE Mailboxes SET greeting = \"" + greeting + "\" WHERE id = \"" + mailbox_id + "\" ";
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
     }
 
     @Override
     public void updateMailboxPassword(int mailbox_id, String password) {
+        try{
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
 
+            Statement stmt = conn.createStatement();
+            String sql = "UPDATE Mailboxes SET password = \"" + password + "\" WHERE id = \"" + mailbox_id + "\" ";
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
     }
 
     private void retrieveMailboxes() throws SQLException {

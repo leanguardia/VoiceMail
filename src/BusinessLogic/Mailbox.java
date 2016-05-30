@@ -113,8 +113,14 @@ public class Mailbox
    */
    public void setGreeting(String newGreeting)
    {
+      DBConnection mysql = new MySQLConnection();
+      mysql.updateMailboxGreeting(mailboxID,newGreeting);
       greeting = newGreeting;
+
+
    }
+
+
 
    /**
       Change mailbox's passcode.
@@ -122,6 +128,8 @@ public class Mailbox
    */
    public void setPasscode(String newPasscode)
    {
+      DBConnection mysql = new MySQLConnection();
+      mysql.updateMailboxPassword(mailboxID,newPasscode);
       passcode = newPasscode;
    }
 
