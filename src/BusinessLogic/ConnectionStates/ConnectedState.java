@@ -25,7 +25,6 @@ public class ConnectedState implements ConnectionState {
 
     @Override
     public void record(String voice, Connection connection) {
-
     }
 
     @Override

@@ -116,11 +116,7 @@ public class Mailbox
       DBConnection mysql = new MySQLConnection();
       mysql.updateMailboxGreeting(mailboxID,newGreeting);
       greeting = newGreeting;
-
-
    }
-
-
 
    /**
       Change mailbox's passcode.
@@ -128,9 +124,11 @@ public class Mailbox
    */
    public void setPasscode(String newPasscode)
    {
-      DBConnection mysql = new MySQLConnection();
-      mysql.updateMailboxPassword(mailboxID,newPasscode);
-      passcode = newPasscode;
+      if (!newPasscode.isEmpty()){
+         DBConnection mysql = new MySQLConnection();
+         mysql.updateMailboxPassword(mailboxID,newPasscode);
+         passcode = newPasscode;
+      }
    }
 
    /**

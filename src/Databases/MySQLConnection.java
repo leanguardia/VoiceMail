@@ -207,11 +207,9 @@ public class MySQLConnection implements DBConnection {
             String text = rs.getString("text");
             int mailbox_id = rs.getInt("mailbox_id");
             if (tableTarget.equals("Messages")) {
-                System.out.println("Entra a messages");
                 mailboxes.get(mailbox_id-1).justAddKeptMessage(new Message(text));
             }
             else {
-                System.out.println("Entra a Newmessages");
                 mailboxes.get(mailbox_id - 1).justAddNewMessage(new Message(text));
             }
         }
