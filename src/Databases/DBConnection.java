@@ -17,6 +17,7 @@ public interface DBConnection {
     void deleteKeptMessage(String txt, int mailbox_id);
 
     void saveContact(String fn,String ln,String number);
+    void deleteContact(String fn,String ln,String number);
 
     void updateMailboxGreeting(int mailbox_id, String greeting);
     void updateMailboxPassword(int mailbox_id, String password);

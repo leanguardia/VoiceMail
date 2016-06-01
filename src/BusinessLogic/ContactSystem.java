@@ -38,7 +38,10 @@ public class ContactSystem {
     }
 
     public void removeContact(int contactNumber){
-        contacts.remove(contacts.get(contactNumber - 1));
+        DBConnection mysql = new MySQLConnection();
+        Contact c = contacts.get(contactNumber - 1);
+        mysql.deleteContact(c.getName(),c.getLastName(),c.getNumber());
+        contacts.remove(c);
     }
     public void setContacts(ArrayList<Contact> contacts) {
         this.contacts = contacts;

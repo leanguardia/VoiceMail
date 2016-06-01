@@ -1,0 +1,2 @@
+IDE: IntelliJ IDEA
+PRUEBAS: para que corran las pruebas hay que comentar las lineas marcadas en el metodo speakToAll, Connection. Son instrucciones que permiten modificar la Interfaz de Usuario Gráfica desde un hilo externo, pero rompen las pruebas.

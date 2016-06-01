@@ -17,10 +17,12 @@ public class MySQLConnection implements DBConnection {
 
     private Connection conn = null;
 
-    private ArrayList<Contact> contacts = new ArrayList<Contact>();
-    private ArrayList<Mailbox> mailboxes = new ArrayList<Mailbox>();
+    private ArrayList<Contact> contacts;
+    private ArrayList<Mailbox> mailboxes;
 
     public MySQLConnection(){
+        contacts = new ArrayList<Contact>();
+        mailboxes = new ArrayList<Mailbox>();
     }
 
     @Override
@@ -60,12 +62,12 @@ public class MySQLConnection implements DBConnection {
 
     @Override
     public void saveNewMessage(String text, int mailbox_id) {
-        saveMessage(text,mailbox_id,true);
+            saveMessage(text, mailbox_id, true);
     }
 
     @Override
     public void saveKeptMessage(String text, int mailbox_id) {
-        saveMessage(text,mailbox_id,false);
+            saveMessage(text,mailbox_id,false);
     }
 
     @Override
@@ -251,6 +253,31 @@ public class MySQLConnection implements DBConnection {
             Statement stmt = conn.createStatement();
             String sql = "DELETE FROM "+tableTarget+" WHERE text=\""
                     +txt+ "\" and mailbox_id="+mailbox_id+" limit 1";
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+    }
+
+    public void deleteContact(String fn, String ln, String number) {
+        try{
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+            Statement stmt = conn.createStatement();
+            String sql = "DELETE FROM Contacts WHERE first_name=\""
+                    +fn+ "\" and last_name=\""+ln+"\" and number=\"" + number + "\" limit 1";
+        System.out.println(sql);
             stmt.executeUpdate(sql);
             stmt.close();
             conn.close();

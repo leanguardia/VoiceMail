@@ -44,9 +44,11 @@ public class Mailbox
       @param aMessage the message to be added
    */
    public void addMessage(Message aMessage) {
-      newMessages.add(aMessage);
-      DBConnection mysql = new MySQLConnection();
-      mysql.saveNewMessage(aMessage.getText(),mailboxID);
+      if (!aMessage.getText().isEmpty()){
+         newMessages.add(aMessage);
+         DBConnection mysql = new MySQLConnection();
+         mysql.saveNewMessage(aMessage.getText(),mailboxID);
+      }
    }
 
    public void justAddNewMessage(Message aMessage) {

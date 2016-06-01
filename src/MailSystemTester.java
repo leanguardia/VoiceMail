@@ -34,7 +34,7 @@ public class MailSystemTester
    public static void main(String[] args) {
       DBConnection mysql = new MySQLConnection();
       mysql.getDataFromDB();
-      mysql.deleteNewMessage("New3",1);
+      mysql.deleteContact("Lala","dsfkjhdf","23423");
    }
 
 }
